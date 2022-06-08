@@ -13,5 +13,9 @@ export default {
   }
 }
 </script>
+
 <style>
+h1{
+  color: #fff;
+}
 </style>
