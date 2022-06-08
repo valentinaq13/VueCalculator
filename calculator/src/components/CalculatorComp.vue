@@ -60,7 +60,7 @@ export default {
             this.setPrev();
         },
         subtract() {
-            this.operator = (a, b) => a - b;
+            this.operator = (a, b) => b - a;
             this.setPrev();
         },
         sum() {
@@ -72,7 +72,7 @@ export default {
                 parseFloat(this.result),
                 parseFloat(this.prev)
             );
-            this.prev = null
+            this.prev = null;
         },
         setPrev() {
             this.prev = this.result;
