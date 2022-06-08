@@ -1,6 +1,6 @@
 <template>
     <div class="calc">
-        <div class="display">{{result || 0}}</div>
+        <div class="display">{{ result || 0 }}</div>
         <div class="btn clear" @click="clear">C</div>
         <div class="btn operator" @click="per">%</div>
         <div class="btn" @click="append(7)">7</div>
@@ -26,56 +26,56 @@
 export default {
     data() {
         return {
-            result:"",
+            result: "",
             prev: null,
             operator: null,
             operatorClick: false
         }
     },
     methods: {
-        clear(){
+        clear() {
             this.result = "";
         },
-        per(){
-            this.result = parseFloat(this.result)/100;
+        per() {
+            this.result = parseFloat(this.result) / 100;
         },
-        append(number){
-            if(this.operatorClick){
+        append(number) {
+            if (this.operatorClick) {
                 this.result = "";
                 this.operatorClick = false;
             }
-            this.result = this.result+number;
+            this.result = this.result + number;
         },
-        dot(){
-            if(this.result.indexOf(".") === -1){
+        dot() {
+            if (this.result.indexOf(".") === -1) {
                 this.append(".");
             }
         },
-        divide(){
-            this.operator = (a, b) => b/a; 
+        divide() {
+            this.operator = (a, b) => b / a;
             this.setPrev();
         },
-        multiply(){
-            this.operator = (a, b) => a*b;
+        multiply() {
+            this.operator = (a, b) => a * b;
             this.setPrev();
         },
-        subtract(){
-            this.operator = (a, b) => a-b;
+        subtract() {
+            this.operator = (a, b) => a - b;
             this.setPrev();
         },
-        sum(){
-            this.operator = (a, b) => a+b;
+        sum() {
+            this.operator = (a, b) => a + b;
             this.setPrev();
         },
-        equal(){
+        equal() {
             this.result = this.operator(
-            parseFloat(this.result),
-            parseFloat(this.prev)
+                parseFloat(this.result),
+                parseFloat(this.prev)
             );
-            this.prev=null
+            this.prev = null
         },
-        setPrev(){
-            this.prev=this.result;
+        setPrev() {
+            this.prev = this.result;
             this.operatorClick = true;
         }
     }
@@ -114,11 +114,13 @@ export default {
     border: 1px solid #999;
     cursor: pointer;
 }
-.btn:active{
+
+.btn:active {
     background: #777;
     color: #fff;
 }
-.operator{
- color: rebeccapurple ;
+
+.operator {
+    color: rebeccapurple;
 }
 </style>
