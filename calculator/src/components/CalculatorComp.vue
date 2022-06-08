@@ -17,7 +17,7 @@
         <div class="btn operator" @click="subtract">-</div>
         <div class="btn" @click="append(0)">0</div>
         <div class="btn" @click="dot">.</div>
-        <div class="btn">=</div>
+        <div class="btn" @click="equal">=</div>
         <div class="btn operator" @click="sum">+</div>
     </div>
 </template>
@@ -40,6 +40,10 @@ export default {
             this.result = parseFloat(this.result)/100;
         },
         append(number){
+            if(this.operatorClick){
+                this.result = "";
+                this.operatorClick = false;
+            }
             this.result = this.result+number;
         },
         dot(){
@@ -49,18 +53,30 @@ export default {
         },
         divide(){
             this.operator = (a, b) => b/a; 
+            this.setPrev();
         },
         multiply(){
             this.operator = (a, b) => a*b;
-            
+            this.setPrev();
         },
         subtract(){
             this.operator = (a, b) => a-b;
-            
+            this.setPrev();
         },
         sum(){
             this.operator = (a, b) => a+b;
-            
+            this.setPrev();
+        },
+        equal(){
+            this.result = this.operator(
+            parseFloat(this.result),
+            parseFloat(this.prev)
+            );
+            this.prev=null
+        },
+        setPrev(){
+            this.prev=this.result;
+            this.operatorClick = true;
         }
     }
 }
